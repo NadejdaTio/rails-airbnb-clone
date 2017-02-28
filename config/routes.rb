@@ -1,19 +1,6 @@
 Rails.application.routes.draw do
-  get 'player_reviews/index'
-
-  get 'player_reviews/show'
-
-  get 'player_reviews/new'
-
-  get 'player_reviews/create'
-
-  get 'player_reviews/update'
-
-  get 'player_reviews/edit'
-
-  get 'player_reviews/destroy'
-
-  get 'pages/home'
+  resources :player_reviews
+  resources :profiles
 
   devise_for :users
   root to: 'pages#home'
