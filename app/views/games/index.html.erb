@@ -1,0 +1,29 @@
+<div id="sextoys" class="container-fluid">
+  <div class="text-center intro-index">
+    <h1>Nos jeux</h1>
+  </div>
+
+  <% @games.each do |game| %>
+    <div class="row">
+      <div class="span12">
+        <div class="col-xs-12 col-lg-4 text-center">
+            <div class="card-category"><%= game.category %></div>
+            <div class="card-description">
+              <h2><%= game.name %></h2>
+              <div class="">
+                <div class=""><%= game.price %> €</div>
+                <div class="">Nombre de joueurs minimum : <%= game.min_number_players %></div>
+                <div class="">Nombre de joueurs maximum : <%= game.max_number_players %></div>
+                <div class="">Age : <%= game.age_range %></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <hr/>
+    </div>
+  <% end %>
+</div>
+
+
+
