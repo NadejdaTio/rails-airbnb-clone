@@ -38,11 +38,11 @@ class GamesController < ApplicationController
 
   private
 
-  def find_sextoy
+  def find_game
     @game = Game.find(params[:id])
   end
 
-  def sextoy_params
+  def game_params
     params.require(:game).permit(:name, :description, :category, :average_duration, :min_number_players, :age_range, :price)
   end
 
