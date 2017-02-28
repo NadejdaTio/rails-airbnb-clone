@@ -1,1 +1,13 @@
-// Your footer style
+/* Footer design */
+.footer {
+  background-color: #ff5964;
+  color: white;
+  height: 200px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.social-networks {
+  margin: 20px;
+}
+
