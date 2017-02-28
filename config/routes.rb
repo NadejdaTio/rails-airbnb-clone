@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
-  resources :player_reviews
+
   get 'pages/home'
   resources :games, only: [:edit, :show, :index, :destroy, :new, :create, :update]
-  resources :profiles
+  resources :profiles do
+    resources :player_reviews, only: [ :new, :create ]
+  end
 
   devise_for :users
   root to: 'pages#home'

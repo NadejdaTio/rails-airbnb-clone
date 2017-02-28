@@ -8,13 +8,16 @@ class PlayerReviewsController < ApplicationController
   end
 
   def new
+    @profile = Profile.find(params[:profile_id])
     @player_review = PlayerReview.new
   end
 
   def create
     @player_review = PlayerReview.new(player_review_params)
-    @player_review.save
-    # redirect_to ?? a voir en fonction des routes
+    @player_review.profile = Profile.find(params[:profile_id])
+    @player_review.save!
+    fail
+    redirect_to profile_path(:profile_id)
   end
 
   def edit
@@ -22,12 +25,12 @@ class PlayerReviewsController < ApplicationController
 
   def update
     @player_review.update(player_review_params)
-    # redirect_to ?? a voir en fonction des routes
+    redirect_to profile_path(:profile_id)
   end
 
   def destroy
     @player_review.destroy
-    # redirect_to ?? a voir en fonction des routes
+    redirect_to pages_home_path
   end
 
   private
