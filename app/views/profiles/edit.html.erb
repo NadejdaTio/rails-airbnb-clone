@@ -1,2 +1,26 @@
-<h1>Profiles#edit</h1>
-<p>Find me in app/views/profiles/edit.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-4">
+      <!-- insert <div class="card"> -->
+    </div>
+    <div class="col-xs-12 col-sm-4">
+      <div class="text-center">
+        <%= image_tag("http://res.cloudinary.com/kingofocean/image/upload/v1488289197/avatar-medium_ldp59x.jpg", class:"avatar-xlarge") %>
+      </div>
+      <div>
+        <%= simple_form_for(:user, as: :user, url: session_path(:user)) do |f| %>
+          <div class="form-inputs">
+            <%= f.input :first_name, required: false, autofocus: true %>
+            <%= f.input :last_name, required: false %>
+            <%= f.input :address, required: false %>
+            <%= f.input :phone_number, required: false %>
+          </div>
+        <% end %>
+      </div>
+      <div>
+    </div>
+    <div class="col-xs-12 col-sm-4">
+      <!-- insert <div class="card"> -->
+    </div>
+  </div>
+</div>

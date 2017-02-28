@@ -1,2 +1,23 @@
-<h1>Profiles#show</h1>
-<p>Find me in app/views/profiles/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-4">
+      <!-- insert <div class="card"> -->
+    </div>
+    <div class="col-xs-12 col-sm-4">
+      <div class="text-center">
+        <%= image_tag("http://res.cloudinary.com/kingofocean/image/upload/v1488289197/avatar-medium_ldp59x.jpg", class:"avatar-xlarge") %>
+      </div>
+      <div>
+      <p><strong>Nom</strong>: <%= @profile.last_name %></p>
+      <p><strong>Prénom</strong>: <%= @profile.first_name %></p>
+      <p><strong>Ville</strong>: <%= @profile.address %></p>
+      <p><strong>Ville</strong>: <%= @profile.phone_number %></p>
+      </div>
+      <%= link_to "Editer mes infos", edit_profile_path(@profile), class:"btn btn-primary" %>
+    </div>
+    <div class="col-xs-12 col-sm-4">
+      <!-- insert <div class="card"> -->
+    </div>
+  </div>
+</div>
+<hr>
