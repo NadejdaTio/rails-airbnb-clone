@@ -2,7 +2,7 @@ class GamesController < ApplicationController
 
   before_action :find_game, only: [:show, :update, :edit, :destroy]
 
-  def index         # GET /restaurants
+  def index
     @games = Game.all
   end
 
@@ -10,11 +10,11 @@ class GamesController < ApplicationController
     @game = Game.find(params[:id])
   end
 
-  def new           # GET /restaurants/new
+  def new
     @game = Game.new
   end
 
-  def create        # POST /restaurants
+  def create
     @game = Game.new(game_params)
     if @game.save!
       redirect_to game_path(@game)
@@ -23,15 +23,15 @@ class GamesController < ApplicationController
     end
   end
 
-  def update        # PATCH/PUT /articles/:id
+  def update
     @game.update(game_params)
     redirect_to game_path(@game) # Show
   end
 
-  def edit          # GET /restaurants/:id/edit
+  def edit
   end
 
-  def destroy       # DELETE /restaurants/:id
+  def destroy
     @game.destroy
     redirect_to games_path
   end
