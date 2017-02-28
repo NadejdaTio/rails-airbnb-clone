@@ -1,0 +1,12 @@
+<%= form_for(@player_review) do |f| %>
+  <%= f.label :notes %>
+  <%= f.text_field :rating %>
+
+  <%= f.label :commmentaire %>
+  <%= f.text_field :comment %>
+
+  <%= f.label :state %>
+  <%= f.text_field :state %>
+
+  <%= f.submit %>
+<% end %>
