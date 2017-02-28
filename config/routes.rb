@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get 'pages/home'
   resources :games, only: [:edit, :show, :index, :destroy, :new, :create, :update]
+  resources :profiles
 
   devise_for :users
   root to: 'pages#home'
