@@ -8,7 +8,7 @@
     <% if @game.min_number_players == @game.max_number_players %>
       <p><%= @game.max_number_players %> players</p>
     <% else %>
-      <p>From <%= game.min_number_players %> to <%= @game.max_number_players %> players</p>
+      <p>From <%= @game.min_number_players %> to <%= @game.max_number_players %> players</p>
     <% end %>
     <p>Age range: <%= @game.age_range %></p>
     <p>Average duration: <%= @game.average_duration %> min</p>
