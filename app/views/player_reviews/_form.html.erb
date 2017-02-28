@@ -1,11 +1,31 @@
-<%= simple_form_for [@profile, @player_review] do |f| %>
-  <%= f.label 'Note (de 0 à 10)' %>
-  <%= f.text_field :rating %>
+<div class='row'>
+  <%= simple_form_for [@profile, @player_review] do |f| %>
+  <div class='row label-form'>
+    <div class='col-xs-12 col-md-3 col-lg-2'>
+      <%= f.label 'Note (de 0 à 10)' %>
+    </div>
+    <div class='col-xs-12 col-md-9 col-lg-10'>
+      <%= f.text_field :rating %>
+    </div>
+  </div>
 
-  <%= f.label 'Commentaire' %>
-  <%= f.text_field :comment %>
+  <div class='row label-form'>
+    <div class='col-xs-12 col-md-3 col-lg-2'>
+      <%= f.label 'Commentaire' %>
+    </div>
+    <div class='col-xs-12 col-md-9 col-lg-10'>
+      <%= f.text_field :comment %>
+    </div>
+  </div>
 
-  <%= f.label 'Etat du jeu' %>
-  <%= f.text_field :state %>
+  <div class='row label-form'>
+    <div class='col-xs-12 col-md-3 col-lg-2'>
+      <%= f.label 'Etat du jeu' %>
+    </div>
+    <div class='col-xs-12 col-md-9 col-lg-10'>
+      <%= f.text_field :state %>
+    </div>
+  </div>
   <%= f.submit "Ajouter un commentaire", class: "btn btn-primary" %>
 <% end %>
+</div>

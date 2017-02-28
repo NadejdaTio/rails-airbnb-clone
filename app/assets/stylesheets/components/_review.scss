@@ -1,3 +1,14 @@
-.title-review h2 {
-  font-style: oblique;
+.title-review {
+  padding: 50px;
+}
+
+form {
+  input[type="text"] {
+  width: 75%;
+  }
+}
+
+.label-form {
+  margin-top: 25px;
+  margin-bottom: 25px;
 }
