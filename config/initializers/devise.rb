@@ -250,7 +250,7 @@ Devise.setup do |config|
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
 
   Devise.setup do |config|
-  config.omniauth :facebook, ENV["FB_ID"], ENV["FB_SECRET"],
+  config.omniauth :facebook, ENV["1784828851844479"], ENV["82e453a0713e77002a1c7c8184b8c893"],
     scope: 'email',
     info_fields: 'email, first_name, last_name',
     image_size: 'square',  # 50x50, guaranteed ratio
