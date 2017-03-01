@@ -4,6 +4,24 @@ class GamesController < ApplicationController
 
   def index
     @games = Game.all
+
+    if current_user
+      @player = Profile.find_by(user: current_user)
+
+      @player_coordinates = { lat: @player.latitude, lng: @player.longitude }
+      @owners = Profile.where.not(latitude: nil, longitude: nil, user: current_user)
+
+      @hash = Gmaps4rails.build_markers(@owners) do |profile, marker|
+        marker.lat profile.latitude
+        marker.lng profile.longitude
+        marker.infowindow render_to_string(partial: "/profiles/map_box", locals: { profile: profile })
+      end
+
+    else
+      redirect_to new_user_session_path
+    end
+
+
   end
 
   def show
@@ -40,7 +58,7 @@ class GamesController < ApplicationController
     redirect_to games_path
   end
 
-  private
+private
 
   def find_game
     @game = Game.find(params[:id])
@@ -49,5 +67,4 @@ class GamesController < ApplicationController
   def game_params
     params.require(:game).permit(:name, :description, :category, :average_duration, :min_number_players, :age_range, :price)
   end
-
 end
