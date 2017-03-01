@@ -3,23 +3,35 @@ class GamesController < ApplicationController
   before_action :find_game, only: [:show, :update, :edit, :destroy]
 
   def index
-    @games = Game.all
+    search_params
+    #if current_user
+    owners_arr = Profile.near(params[:address], 10)
+    #@owner = owners_arr.first #Profile.find_by(user: current_user)
 
-    if current_user
-      @player = Profile.find_by(user: current_user)
+    @games = Game.all.select do |game|
+      owners_arr.include?(game.profile) && game.category == params[:category]
+    end
 
-      @player_coordinates = { lat: @player.latitude, lng: @player.longitude }
-      @owners = Profile.where.not(latitude: nil, longitude: nil, user: current_user)
+    @games_profile = @games.map do |game|
+      game.profile
+    end
+
+    if !@games.empty?
+      #@owner_coordinates = { lat: @owner.latitude, lng: @owner.longitude }
+      @owners = Profile.all.select do |profile|
+        profile.latitude != nil && profile.longitude != nil && profile.user != current_user && @games_profile.include?(profile)
+      end
 
       @hash = Gmaps4rails.build_markers(@owners) do |profile, marker|
         marker.lat profile.latitude
         marker.lng profile.longitude
         marker.infowindow render_to_string(partial: "/profiles/map_box", locals: { profile: profile })
       end
-
-    else
-      redirect_to new_user_session_path
     end
+
+    # else
+    #   redirect_to new_user_session_path
+    # end
 
 
   end
