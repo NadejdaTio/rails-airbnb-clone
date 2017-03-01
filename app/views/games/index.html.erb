@@ -11,6 +11,7 @@
             <div class='product-body'>
               <h3><%= game.name %></h3>
               <p><%= game.price %> €</p>
+              <p><%= game.category %></p>
               <% if game.min_number_players == game.max_number_players %>
                 <p><%= game.max_number_players %> players</p>
               <% else %>
