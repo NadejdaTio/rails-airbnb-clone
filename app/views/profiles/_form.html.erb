@@ -5,7 +5,13 @@
     </div>
     <div class="col-xs-12 col-sm-4">
       <div class="text-center">
+
+      <% if @profile.photo == nil %>
         <%= image_tag("http://res.cloudinary.com/kingofocean/image/upload/v1488289197/avatar-medium_ldp59x.jpg", class:"avatar-xlarge") %>
+      <% else %>
+        <%= cl_image_tag @profile.photo.path, class:"avatar-xlarge" %>
+      <% end %>
+
       </div>
       <div>
         <%= simple_form_for [@profile] do |f| %>
@@ -14,6 +20,7 @@
             <%= f.input :first_name %>
             <%= f.input :address %>
             <%= f.input :phone_number %>
+            <%= f.input :photo, as: :attachinary %>
 
             <%= f.submit class: "btn btn-primary" %>
           </div>
@@ -26,3 +33,4 @@
     </div>
   </div>
 </div>
+

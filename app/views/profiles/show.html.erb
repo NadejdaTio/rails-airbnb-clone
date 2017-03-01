@@ -5,7 +5,11 @@
     </div>
     <div class="col-xs-12 col-sm-4">
       <div class="text-center">
-        <%= image_tag("http://res.cloudinary.com/kingofocean/image/upload/v1488289197/avatar-medium_ldp59x.jpg", class:"avatar-xlarge") %>
+        <% if @profile.photo == nil %>
+          <%= image_tag("http://res.cloudinary.com/kingofocean/image/upload/v1488289197/avatar-medium_ldp59x.jpg", class:"avatar-xlarge") %>
+        <% else %>
+          <%= cl_image_tag @profile.photo.path, class:"avatar-xlarge" %>
+        <% end %>
       </div>
       <div>
       <p><strong>Nom</strong>: <%= @profile.last_name %></p>
@@ -14,6 +18,8 @@
       <p><strong>Ville</strong>: <%= @profile.phone_number %></p>
       </div>
       <%= link_to "Editer mes infos", edit_profile_path(@profile), class:"btn btn-primary" %>
+      <%= link_to "Supprimer mon compte", user_registration_path, :method => :delete, class:"btn btn-danger",
+                  :data => {:confirm => 'Are you sure?'} %>
     </div>
     <div class="col-xs-12 col-sm-4">
       <!-- insert <div class="card"> -->
