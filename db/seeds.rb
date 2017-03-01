@@ -36,7 +36,7 @@ Game.all.each do |game|
 end
 
 Order.all.each do |order|
-  owner_review = OwnerReview.create!(rating: 4, comment: 'c\'est pas mal', state: 'en bon état', profile: profile2, order: order)
+  owner_review = OwnerReview.create!(rating: 4, comment: 'c\'est pas mal', state: 'en bon état', profile: profile1, order: order)
   player_review = PlayerReview.create!(rating: 4, comment: 'c\'est pas mal', state: 'en bon état', profile: profile2, order: order)
 end
 

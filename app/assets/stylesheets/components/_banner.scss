@@ -1,0 +1,83 @@
+.banner {
+  background-size: cover !important;
+  color: white;
+  background-color: red;
+  text-align: center;
+  height: 100vh;
+  /* if you have a 70px navbar => height: calc(100vh - 70px); */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.banner h1 {
+  font-size: 50px;
+  font-weight: bold;
+  text-shadow: 0px 1px rgba(0, 0, 0, 0.2);
+}
+.banner p {
+  font-size: 20px;
+  font-weight: lighter;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 20px;
+}
+
+.search {
+  margin-top: 100px;
+}
+
+.btn-medium {
+  color: #35a7ff;
+  border: 2px solid #35a7ff;
+  padding: 10px 15px;
+  border-radius: 50px;
+  font-weight: lighter;
+  opacity: 0.6;
+}
+.btn-medium:hover {
+  opacity: 1;
+  text-decoration: none;
+  color: #35a7ff;
+}
+
+.text {
+  text-align: center;
+  margin-top: 300px;
+  color: #fff;
+  font-size: 1.0em;
+  font-family: sans-serif;
+  text-transform: uppercase;
+}
+
+.animated {
+  animation-duration: 2.5s;
+  animation-fill-mode: both;
+  animation-iteration-count: infinite;
+}
+
+@keyframes pulse {
+  0% {transform: scale(1);}
+  50% {transform: scale(1.1);}
+  100% {transform: scale(1);}
+}
+.pulse {
+  animation-name: pulse;
+  animation-duration: 1s;
+}
+
+@media all and (max-width: 680px) {
+  .wrap {
+   width: 100%;
+  }
+  .box {
+    width: 100%;
+  height: 55px;
+    clear: both;
+    margin: 0px auto;
+  }
+  .text {
+   margin-top: 20px;
+  }
+  .hingebox, .flipbox {
+     display: none;
+  }
+}
