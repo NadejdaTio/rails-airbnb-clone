@@ -20,8 +20,8 @@
     <div class="wrap">
       <div class="box">
         <div class="text animated pulse"><%= link_to "En savoir plus", "#about", class: "read-more btn-medium" %></div>
+        </div>
       </div>
-    </div>
   </div>
 </div>
 
@@ -60,19 +60,30 @@
 <!-- Wrapper How it works -->
 <div id="about" class="wrapper how-it-work">
   <div class="container">
-    <div class="row">
-      <h2>Comment ça marche</h2>
-        <div class="col-xs-12 col-lg-4">
-
-            <div><p>Salut</p></div>
+    <div class="row text-center">
+      <h2>Comment ça marche ?</h2>
+        <div class="col-xs-12 col-lg-12">
+          <p>Le principe est simple : trouver autour de chez vous des jeux de société que vous pouvez louer pour la journée, un weekend, ou toute une semaine !</p>
+          <p> Recherchez par : </p>
         </div>
         <div class="col-xs-12 col-lg-4">
-            <div><p>Salut</p></div>
+          <div class="image"><%= cl_image_tag("city",
+      width: 150, height: 150, crop: :fill) %></div>
+          <p>ville</p>
         </div>
         <div class="col-xs-12 col-lg-4">
-            <div><p>Salut</p></div>
+          <div class="image"><%= cl_image_tag("day",
+      width: 150, height: 150, crop: :fill) %></div>
+          <p>jour de location</p>
+        </div>
+        <div class="col-xs-12 col-lg-4">
+        <div class="image"><%= cl_image_tag("puzzle",
+      width: 150, height: 150, crop: :fill) %></div>
+          <p>catégorie</p>
         </div>
     </div>
   </div>
 </div>
+
+
 
