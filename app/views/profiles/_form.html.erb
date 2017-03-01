@@ -5,7 +5,14 @@
     </div>
     <div class="col-xs-12 col-sm-4">
       <div class="text-center">
-        <%= image_tag("http://res.cloudinary.com/kingofocean/image/upload/v1488289197/avatar-medium_ldp59x.jpg", class:"avatar-xlarge") %>
+        <% avatar_url = current_user.facebook_picture_url || "http://placehold.it/200x200" %>
+        <% if @profile.photo %>
+          <%= cl_image_tag @profile.photo.path, class:"avatar-xlarge" %>
+        <% elsif avatar_url %>
+          <%= image_tag avatar_url, class:"avatar-xlarge" %>
+        <% else %>
+          <%= image_tag("http://res.cloudinary.com/kingofocean/image/upload/v1488289197/avatar-medium_ldp59x.jpg", class:"avatar-xlarge") %>
+        <% end %>
       </div>
       <div>
         <%= simple_form_for [@profile] do |f| %>
@@ -14,6 +21,7 @@
             <%= f.input :first_name %>
             <%= f.input :address %>
             <%= f.input :phone_number %>
+            <%= f.input :photo, as: :attachinary %>
 
             <%= f.submit class: "btn btn-primary" %>
           </div>
@@ -26,3 +34,4 @@
     </div>
   </div>
 </div>
+
