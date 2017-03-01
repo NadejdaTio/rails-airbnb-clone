@@ -7,6 +7,7 @@ gem 'pg'
 gem 'figaro'
 gem 'jbuilder', '~> 2.0'
 gem 'redis'
+gem 'cloudinary'
 
 gem 'sass-rails'
 gem 'jquery-rails'
@@ -24,6 +25,7 @@ gem "gmaps4rails"
 source 'https://rails-assets.org' do
   gem "rails-assets-underscore"
 end
+
 
 group :development, :test do
   gem 'binding_of_caller'

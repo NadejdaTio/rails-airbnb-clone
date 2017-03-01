@@ -8,16 +8,21 @@
         <%= image_tag("http://res.cloudinary.com/kingofocean/image/upload/v1488289197/avatar-medium_ldp59x.jpg", class:"avatar-xlarge") %>
       </div>
       <div>
-      <p><strong>Nom</strong>: <%= @profile.last_name %></p>
-      <p><strong>Prénom</strong>: <%= @profile.first_name %></p>
-      <p><strong>Ville</strong>: <%= @profile.address %></p>
-      <p><strong>Ville</strong>: <%= @profile.phone_number %></p>
+        <%= simple_form_for [@profile] do |f| %>
+          <div class="form-inputs">
+            <%= f.input :last_name, autofocus: true %>
+            <%= f.input :first_name %>
+            <%= f.input :address %>
+            <%= f.input :phone_number %>
+
+            <%= f.submit class: "btn btn-primary" %>
+          </div>
+        <% end %>
       </div>
-      <%= link_to "Editer mes infos", edit_profile_path(@profile), class:"btn btn-primary" %>
+      <div>
     </div>
     <div class="col-xs-12 col-sm-4">
       <!-- insert <div class="card"> -->
     </div>
   </div>
 </div>
-<hr>
