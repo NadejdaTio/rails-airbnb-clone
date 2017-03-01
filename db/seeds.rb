@@ -14,8 +14,8 @@ doc = Nokogiri::HTML(open(url), nil, 'utf-8')
 
 user1 = User.create!(email: 'pal.hadur@gmail.com', password: '123456')
 user2 = User.create!(email: 'amanda.gradur@gmail.com', password: '1234567')
-profile1 =  Profile.create!(first_name: 'Paul', last_name: 'hadur', address: '25 rue de la moule 59000 Lille', phone_number: '0386941029', user: user1)
-profile2 = Profile.create!(first_name: 'Amanda', last_name: 'Gradur', address: '30 rue de la moule 59000 Lille', phone_number: '0386941529', user: user2)
+profile1 =  Profile.create!(first_name: 'Paul', last_name: 'hadur', address: '25 rue de la moule, Lille', phone_number: '0386941029', user: user1)
+profile2 = Profile.create!(first_name: 'Amanda', last_name: 'Gradur', address: '30 rue de la moule, Lille', phone_number: '0386941529', user: user2)
 
 doc.search('.Article-item').each do |element|
   name = element.css('.Article-desc a').text

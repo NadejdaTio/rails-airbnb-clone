@@ -11,7 +11,7 @@ gem 'cloudinary'
 
 gem 'sass-rails'
 gem 'jquery-rails'
-gem 'uglifier'
+gem 'uglifier', '~> 3.0.4'
 gem 'bootstrap-sass'
 gem 'font-awesome-sass'
 gem 'simple_form'
