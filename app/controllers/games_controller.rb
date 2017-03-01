@@ -50,4 +50,7 @@ class GamesController < ApplicationController
     params.require(:game).permit(:name, :description, :category, :average_duration, :min_number_players, :age_range, :price)
   end
 
+  def search_params
+    params.permit(:address, :start_date, :category)
+  end
 end
