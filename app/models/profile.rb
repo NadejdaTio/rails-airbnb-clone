@@ -4,4 +4,7 @@ class Profile < ApplicationRecord
   has_many :orders, dependent: :destroy
   # has_many :order_reviews, dependent: :destroy
   has_many :player_reviews, dependent: :destroy
+
+  geocoded_by :address
+  after_validation :geocode, if: :address_changed?
 end
