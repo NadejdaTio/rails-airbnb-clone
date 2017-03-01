@@ -8,6 +8,10 @@ class GamesController < ApplicationController
 
   def show
     @game = Game.find(params[:id])
+    @profile = @game.profile
+    @reviews = OwnerReview.all.select {|review| review.profile == @profile }
+    @recos = Game.all.select {|game| game.category == @game.category }
+    #@order = Order.new()
   end
 
   def new

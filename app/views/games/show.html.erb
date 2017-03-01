@@ -1,0 +1,81 @@
+<div class="product">
+  <div class='product-upvote'>
+  </div>
+  <img src="kudoz.jpg" alt="kudoz" class="product-image hidden-xs">
+  <div class='product-body'>
+    <h3><%= @game.name %></h3>
+    <p><%= @game.price %> €</p>
+    <% if @game.min_number_players == @game.max_number_players %>
+      <p><%= @game.max_number_players %> players</p>
+    <% else %>
+      <p>From <%= @game.min_number_players %> to <%= @game.max_number_players %> players</p>
+    <% end %>
+    <p>Age range: <%= @game.age_range %></p>
+    <p>Average duration: <%= @game.average_duration %> min</p>
+  </div>
+  <div>
+  TO DO
+
+  </div>
+  <ul class="list-inline product-controls hidden-sm hidden-xs">
+    <li><a href=""><i class="fa fa-heart"></i></a></li>
+    <li><a href=""><i class="fa fa-share"></i></a></li>
+    <li><a href=""><i class="fa fa-star"></i></a></li>
+  </ul>
+</div>
+
+<div class="tabs">
+  <a class="tab active" href="#">
+    <p>Rules</p>
+  </a>
+  <a class="tab" href="#">
+    <p>Avis</p>
+  </a>
+  <a class="tab" href="#">
+    <p>Recommandations</p>
+  </a>
+</div>
+
+
+<div class="well"><p><%= @game.description %></p></div>
+
+<div>
+  <% @reviews.each do |review| %>
+    <div class="product">
+      <div class='product-upvote'>
+        <div class="product-arrow"></div>
+        <div class='product-count'><%= review.rating %></div>
+      </div>
+      <div class='product-body'>
+        <p><%= review.comment %></p>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<div>
+  <p><% @recos.each do |reco| %></p>
+    <div class="product">
+      <div class='product-upvote'>
+      </div>
+      <img src="kudoz.jpg" alt="kudoz" class="product-image hidden-xs">
+      <div class='product-body'>
+        <h3><%= reco.name %></h3>
+        <p><%= reco.price %> €</p>
+        <% if reco.min_number_players == reco.max_number_players %>
+          <p><%= reco.max_number_players %> players</p>
+        <% else %>
+          <p>From <%= reco.min_number_players %> to <%= reco.max_number_players %> players</p>
+        <% end %>
+        <p>Age range: <%= reco.age_range %></p>
+        <p>Average duration: <%= reco.average_duration %> min</p>
+      </div>
+      <ul class="list-inline product-controls hidden-sm hidden-xs">
+        <li><a href=""><i class="fa fa-heart"></i></a></li>
+        <li><a href=""><i class="fa fa-share"></i></a></li>
+        <li><a href=""><i class="fa fa-star"></i></a></li>
+      </ul>
+    </div>
+<% end %>
+</div>
+
