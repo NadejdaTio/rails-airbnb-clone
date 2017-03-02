@@ -24,6 +24,49 @@
       <%= link_to "Supprimer mon compte", user_registration_path, :method => :delete, class:"btn btn-danger",
                   :data => {:confirm => 'Are you sure?'} %>
     </div>
+  </div>
+</div>
+<hr>
+<!-- Mes jeux -->
+
+
+<div class="tabs">
+    <a class="tab active" href="#" data-target="#player">
+      <p>Commentaire sur mes locations</p>
+    </a>
+    <a class="tab" href="#" data-target="#owner">
+      <p>Commentaire sur mes jeux</p>
+    </a>
+    <a class="tab" href="#" data-target="#my-games">
+      <p>Mes jeux</p>
+    </a>
+  </div>
+
+  <div class="tab-content" id="player">
+    <div class="container" >
+      <% PlayerReview.all.each do |review| %>
+        <div>
+          <p><%= review.rating %></p>
+          <p><%= review.comment %></p>
+          <p><%= review.state %></p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="tab-content hidden" id="owner">
+    <div class="container">
+      <% OwnerReview.all.each do |review| %>
+        <div>
+          <p><%= review.rating %></p>
+          <p><%= review.comment %></p>
+          <p><%= review.state %></p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="tab-content hidden" id="my-games">
     <div class="col-xs-12 col-sm-4">
       <ul>
         <h1>Mes jeux</h1>
@@ -37,5 +80,19 @@
     </div>
   </div>
 </div>
-<hr>
-<!-- Mes jeux -->
+
+<% content_for(:after_js) do %>
+  <%= javascript_tag do %>
+    $(function(){
+      $(".tab").on("click", function(e){
+      $(".active").toggleClass('active');
+      $(this).toggleClass('active');
+      $(".hidden").toggleClass('hidden');
+      $(".tab-content").toggleClass('hidden');
+      var id = $(".active").data('target');
+      $(id).toggleClass('hidden');
+      });
+    });
+  <% end %>
+<% end %>
+
