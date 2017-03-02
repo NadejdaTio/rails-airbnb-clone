@@ -1,81 +1,102 @@
-<div class="product">
-  <div class='product-upvote'>
+<div class="container">
+  <div class="product">
+    <div class='product-upvote'>
+    </div>
+    <img src="kudoz.jpg" alt="kudoz" class="product-image hidden-xs">
+    <div class='product-body'>
+      <h3><%= @game.name %></h3>
+      <p><%= @game.price %> €</p>
+      <% if @game.min_number_players == @game.max_number_players %>
+        <p><%= @game.max_number_players %> players</p>
+      <% else %>
+        <p>From <%= @game.min_number_players %> to <%= @game.max_number_players %> players</p>
+      <% end %>
+      <p>Age range: <%= @game.age_range %></p>
+      <p>Average duration: <%= @game.average_duration %> min</p>
+    </div>
+    <div class='order'>
+      <div class='order-price-day'>
+        <div class='row'>
+          <div class='col-xs-12 col-lg-8'>
+          <h3><%= @game.price %> €</h3>
+          </div>
+          <div class='col-xs-12 col-lg-4'>
+            <p>par jour</p>
+          </div>
+        </div>
+      </div>
+      <%= form_tag(new_order_path, method: 'GET') do %>
+        <div class='row'>
+          <div class='col-xs-12 col-lg-12'>
+          <p>Premier jour de location :</p>
+            <input type="date" class="form-control input-lg" placeholder="Début de location" name="start_date">
+          </div>
+          <div class='col-xs-12 col-lg-12'>
+          <p>Dernier jour de location :</p>
+            <input type="date" class="form-control input-lg" placeholder="Fin de location" name="end_date">
+          </div>
+          <input type="hidden" name="game_id" value= "@game.id" >
+          <div class='col-xs-12 col-lg-12 text-center'>
+            <input type="submit" class="btn btn-primary btn-lg" value="Louer">
+          </div>
+       </div>
+      <% end %>
+   </div>
   </div>
-  <img src="kudoz.jpg" alt="kudoz" class="product-image hidden-xs">
-  <div class='product-body'>
-    <h3><%= @game.name %></h3>
-    <p><%= @game.price %> €</p>
-    <% if @game.min_number_players == @game.max_number_players %>
-      <p><%= @game.max_number_players %> players</p>
-    <% else %>
-      <p>From <%= @game.min_number_players %> to <%= @game.max_number_players %> players</p>
-    <% end %>
-    <p>Age range: <%= @game.age_range %></p>
-    <p>Average duration: <%= @game.average_duration %> min</p>
+
+  <div class="tabs">
+    <a class="tab active" href="#">
+      <p>Rules</p>
+    </a>
+    <a class="tab" href="#">
+      <p>Avis</p>
+    </a>
+    <a class="tab" href="#">
+      <p>Recommandations</p>
+    </a>
   </div>
+
+
+  <div class="well"><p><%= @game.description %></p></div>
+
   <div>
-  TO DO
-
+    <% @reviews.each do |review| %>
+      <div class="product">
+        <div class='product-upvote'>
+          <div class="product-arrow"></div>
+          <div class='product-count'><%= review.rating %></div>
+        </div>
+        <div class='product-body'>
+          <p><%= review.comment %></p>
+        </div>
+      </div>
+    <% end %>
   </div>
-  <ul class="list-inline product-controls hidden-sm hidden-xs">
-    <li><a href=""><i class="fa fa-heart"></i></a></li>
-    <li><a href=""><i class="fa fa-share"></i></a></li>
-    <li><a href=""><i class="fa fa-star"></i></a></li>
-  </ul>
-</div>
 
-<div class="tabs">
-  <a class="tab active" href="#">
-    <p>Rules</p>
-  </a>
-  <a class="tab" href="#">
-    <p>Avis</p>
-  </a>
-  <a class="tab" href="#">
-    <p>Recommandations</p>
-  </a>
-</div>
-
-
-<div class="well"><p><%= @game.description %></p></div>
-
-<div>
-  <% @reviews.each do |review| %>
-    <div class="product">
-      <div class='product-upvote'>
-        <div class="product-arrow"></div>
-        <div class='product-count'><%= review.rating %></div>
+  <div>
+    <p><% @recos.each do |reco| %></p>
+      <div class="product">
+        <div class='product-upvote'>
+        </div>
+        <img src="kudoz.jpg" alt="kudoz" class="product-image hidden-xs">
+        <div class='product-body'>
+          <h3><%= reco.name %></h3>
+          <p><%= reco.price %> €</p>
+          <% if reco.min_number_players == reco.max_number_players %>
+            <p><%= reco.max_number_players %> players</p>
+          <% else %>
+            <p>From <%= reco.min_number_players %> to <%= reco.max_number_players %> players</p>
+          <% end %>
+          <p>Age range: <%= reco.age_range %></p>
+          <p>Average duration: <%= reco.average_duration %> min</p>
+        </div>
+        <ul class="list-inline product-controls hidden-sm hidden-xs">
+          <li><a href=""><i class="fa fa-heart"></i></a></li>
+          <li><a href=""><i class="fa fa-share"></i></a></li>
+          <li><a href=""><i class="fa fa-star"></i></a></li>
+        </ul>
       </div>
-      <div class='product-body'>
-        <p><%= review.comment %></p>
-      </div>
-    </div>
   <% end %>
-</div>
-
-<div>
-  <p><% @recos.each do |reco| %></p>
-    <div class="product">
-      <div class='product-upvote'>
-      </div>
-      <img src="kudoz.jpg" alt="kudoz" class="product-image hidden-xs">
-      <div class='product-body'>
-        <h3><%= reco.name %></h3>
-        <p><%= reco.price %> €</p>
-        <% if reco.min_number_players == reco.max_number_players %>
-          <p><%= reco.max_number_players %> players</p>
-        <% else %>
-          <p>From <%= reco.min_number_players %> to <%= reco.max_number_players %> players</p>
-        <% end %>
-        <p>Age range: <%= reco.age_range %></p>
-        <p>Average duration: <%= reco.average_duration %> min</p>
-      </div>
-      <ul class="list-inline product-controls hidden-sm hidden-xs">
-        <li><a href=""><i class="fa fa-heart"></i></a></li>
-        <li><a href=""><i class="fa fa-share"></i></a></li>
-        <li><a href=""><i class="fa fa-star"></i></a></li>
-      </ul>
-    </div>
-<% end %>
+  </div>
 </div>
 
