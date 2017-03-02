@@ -1,7 +1,20 @@
 class ProfilesController < ApplicationController
   before_action :find_profile, only: [:show, :edit, :destroy, :update]
+
+  def owner?(profile)
+    @games_profile = Game.all.map {|game| game.profile }
+    @games_profile.include?(profile) ? true : false
+  end
+
   def index
     @profiles = Profile.all
+    @owners = @profiles.select {|profile| owner?(profile)}
+
+    @hash = Gmaps4rails.build_markers(@profiles) do |profile, marker|
+      marker.lat profile.latitude
+      marker.lng profile.longitude
+      marker.infowindow render_to_string(partial: "/profiles/map_box", locals: { profile: profile })
+    end
   end
 
   def show
