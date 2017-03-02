@@ -65,15 +65,24 @@
         </div>
       </div>
 
+      <!-- Button (call-to-action) -->
+      <% @profile = Profile.all.select {|profil| profil.user_id == current_user.id} %>
+      <% if @profile != [] %>
+        <%= link_to "Ajoutez un jeu", new_profile_game_path(@profile), class: "navbar-wagon-item navbar-wagon-button btn" %>
+        <% else %>
+          <%= link_to "Ajoutez un jeu", new_profile_path, class: "navbar-wagon-item navbar-wagon-button btn" %>
+        <% %>
+      <% end %>
+
     <% else %>
 
       <!-- Login text link -->
       <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
 
+      <%= link_to "Ajoutez un jeu", new_user_session_path, class: "navbar-wagon-item navbar-wagon-button btn" %>
+
     <% end %>
 
-    <!-- Button (call-to-action) -->
-    <%= link_to t(".top_call_to_action", default: "Post stuff"), "#", class: "navbar-wagon-item navbar-wagon-button btn" %>
   </div>
 
   <!-- Dropdown list appearing on mobile only -->

@@ -45,14 +45,17 @@ class GamesController < ApplicationController
 
   def new
     @game = Game.new
+    @profile = Profile.find(params[:profile_id])
   end
 
   def create
-    @game = Game.new(game_params)
+
+    @profile = Profile.find(params[:profile_id])
+    @game = @profile.games.new(game_params)
     if @game.save!
-      redirect_to game_path(@game)
+      redirect_to profile_path(@profile)
     else
-      render :new
+      render 'profiles/show'
     end
   end
 
@@ -76,7 +79,7 @@ private
   end
 
   def game_params
-    params.require(:game).permit(:name, :description, :category, :average_duration, :min_number_players, :age_range, :price)
+    params.require(:game).permit(:name, :category, :description, :average_duration, :min_number_players, :max_number_players, :age_range, :price, :profile_id)
   end
 
   def search_params

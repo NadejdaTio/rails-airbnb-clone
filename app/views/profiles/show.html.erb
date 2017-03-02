@@ -25,8 +25,17 @@
                   :data => {:confirm => 'Are you sure?'} %>
     </div>
     <div class="col-xs-12 col-sm-4">
-      <!-- insert <div class="card"> -->
+      <ul>
+        <h1>Mes jeux</h1>
+        <% @profile.games.each do |game| %>
+          <li><%= game.name %></li>
+          <li><%= game.price %></li>
+          <li><%= game.category %></li>
+          <li><%= game.age_range %></li>
+        <% end %>
+      </ul>
     </div>
   </div>
 </div>
 <hr>
+<!-- Mes jeux -->
