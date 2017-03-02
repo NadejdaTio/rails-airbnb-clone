@@ -5,7 +5,7 @@ class GamesController < ApplicationController
   def index
     search_params
 
-    if params[:address].nil?
+    if params[:address] == ""
       owners_arr = Profile.all
     else
       owners_arr = Profile.near(params[:address], 10)
