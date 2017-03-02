@@ -45,21 +45,22 @@
   </div>
 
   <div class="tabs">
-    <a class="tab active" href="#">
+    <a class="tab active" href="#" data-target="#rules">
       <p>Rules</p>
     </a>
-    <a class="tab" href="#">
+    <a class="tab" href="#" data-target="#avis">
       <p>Avis</p>
     </a>
-    <a class="tab" href="#">
+    <a class="tab" href="#" data-target="#reco">
       <p>Recommandations</p>
     </a>
   </div>
 
+  <div class="tab-content" id="rules">
+    <div class="well"><p><%= @game.description %></p></div>
+  </div>
 
-  <div class="well"><p><%= @game.description %></p></div>
-
-  <div>
+  <div class="tab-content hidden" id="avis">
     <% @reviews.each do |review| %>
       <div class="product">
         <div class='product-upvote'>
@@ -73,7 +74,7 @@
     <% end %>
   </div>
 
-  <div>
+  <div class="tab-content hidden" id="reco">
     <p><% @recos.each do |reco| %></p>
       <div class="product">
         <div class='product-upvote'>
@@ -99,4 +100,19 @@
   <% end %>
   </div>
 </div>
+
+<% content_for(:after_js) do %>
+  <%= javascript_tag do %>
+    $(function(){
+      $(".tab").on("click", function(e){
+      $(".active").toggleClass('active');
+      $(this).toggleClass('active');
+      $(".hidden").toggleClass('hidden');
+      $(".tab-content").toggleClass('hidden');
+      var id = $(".active").data('target');
+      $(id).toggleClass('hidden');
+      });
+    });
+  <% end %>
+<% end %>
 
