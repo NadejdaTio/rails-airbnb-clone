@@ -35,6 +35,7 @@ class OrdersController < ApplicationController
       end
         if arr_dates_of_location.include?(@order.start_date) == true || arr_dates_of_location.include?(@order.end_date) == true
           redirect_to game_path(@game)
+          flash[:alert] = "Les dates choisies ne sont plus disponibles"
         else
           @order.status = "Demande envoyée"
           @order.save!
@@ -42,6 +43,7 @@ class OrdersController < ApplicationController
         end
     else
       redirect_to new_user_session_path
+      flash[:alert] = "Veuillez-vous enregistrer"
     end
   end
 
