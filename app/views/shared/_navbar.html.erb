@@ -66,8 +66,13 @@
       </div>
 
       <!-- Button (call-to-action) -->
-    <% @profile = Profile.all.select {|profil| profil.user_id == current_user.id} %>
-    <%= link_to "Ajoutez un jeu", new_profile_game_path(@profile), class: "navbar-wagon-item navbar-wagon-button btn" %>
+      <% @profile = Profile.all.select {|profil| profil.user_id == current_user.id} %>
+      <% if @profile != [] %>
+        <%= link_to "Ajoutez un jeu", new_profile_game_path(@profile), class: "navbar-wagon-item navbar-wagon-button btn" %>
+        <% else %>
+          <%= link_to "Ajoutez un jeu", new_profile_path, class: "navbar-wagon-item navbar-wagon-button btn" %>
+        <% %>
+      <% end %>
 
     <% else %>
 
