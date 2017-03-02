@@ -1,9 +1,58 @@
-<h1>Liste des membres</h1>
-  <% @profiles.each do |profile| %>
-    <div>
-    <%= profile.first_name%>
-    <%= profile.last_name%>
-    <%= profile.phone_number%>
-    <%= profile.address%>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-lg-12">
+      <div class="container-fluid">
+        <div class="text-center intro-index">
+          <h2>Borrow your board game from your neighbour</h2>
+        </div>
+        <% @profiles.each do |profile| %>
+          <div class="product">
+            <div class='product-body text-center'>
+              <div class="col-xs-6 col-sm-6 col-lg-6">
+                <h3><%= profile.first_name.capitalize %> <%= profile.last_name.capitalize %></h3>
+                <p><%= profile.address%></p>
+                <h4>Ses jeux</h4>
+              </div>
+              <div class="col-xs-6 col-sm-6 col-lg-6">
+                <div id="map" style="width: 100%; height: 100px;"></div>
+              </div>
+              <% Game.all.select {|game| game.profile == profile }.each do |game| %>
+              <div class="col-xs-12 col-sm-6 col-lg-4">
+                <div class="card" style="border: black;">
+                  <div class="card-category"><%= game.category %></div>
+                  <div class="card-description">
+                    <h2><%= game.name %></h2>
+                    <p><%= game.price %> €</p>
+                  </div>
+                  <img class="card-user avatar" src="user.jpg">
+                  <%= link_to "", game_path(game), class: "card-link" %>
+                </div>
+                <div class="text-center"><%= button_to "Book", new_order_path %></div>
+              <br/>
+              </div>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
   </div>
+
+<% content_for(:after_js) do %>
+  <%= javascript_tag do %>
+    $(document).ready(function() {
+      var handler = Gmaps.build('Google');
+      handler.buildMap({ internal: { id: 'map' } }, function() {
+        markers = handler.addMarkers(<%= raw @hash.to_json %>);
+        handler.bounds.extendWith(markers);
+        handler.fitMapToBounds();
+        if (markers.length == 0) {
+          handler.getMap().setZoom(2);
+        } else if (markers.length == 1) {
+          handler.getMap().setZoom(14);
+        }
+      });
+    });
+  <% end %>
 <% end %>
+</div>
