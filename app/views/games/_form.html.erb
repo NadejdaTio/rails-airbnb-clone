@@ -1,17 +1,20 @@
 <div class="container">
-<%= simple_form_for @game do |f| %>
-  <%= f.input :name %>
-  <% if @game.description %>
-    <%= f.input :description %>
-  <% end %>
-  <%= f.input :category %>
-  <%= f.input :average_duration %>
-  <%= f.input :min_number_players %>
-  <%= f.input :max_number_players %>
-  <%= f.input :price %>
-  <%= f.input :max_number_players %>
-  <%= f.button :submit %>
-<% end %>
-
+  <div class="row">
+    <div class="title">
+      <h1>Ajoutez un jeu en location</h1>
+    </div>
+    <div class="col-xs-12 col-lg-offset-4 col-lg-6">
+      <%= simple_form_for [@profile, @game] do |f| %>
+        <%= f.input :name, label: 'Nom du jeu' %>
+        <%= f.input :description %>
+        <%= f.input :category %>
+        <%= f.input :age_range, label: 'âge' %>
+        <%= f.input :average_duration, label: 'Durée moyenne d\'une partie (en minutes)' %>
+        <%= f.input :min_number_players, label: 'Nombre de joueurs minimum' %>
+        <%= f.input :max_number_players, label: 'Nombre de joueurs maximum' %>
+        <%= f.input :price, label: 'Prix par jour' %>
+        <%= f.button :submit, class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
 </div>
-

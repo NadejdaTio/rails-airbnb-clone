@@ -19,14 +19,13 @@ profile2 = Profile.create!(first_name: 'Amanda', last_name: 'Gradur', address: '
 
 doc.search('.Article-item').each do |element|
   name = element.css('.Article-desc a').text
-  description = ''
   average_duration = 0
   category = element.css('.Article-descSub a').text
   price = element.css('.floatl a strong').text.gsub(/\s+/, '').gsub(/€/, '.').to_f
   age_range = element.css('.moreInfos-list li:nth-child(1) .data strong').text.gsub(/[\n\r\s]{2}/, '')
   min_number_players = element.css('.moreInfos-list li:nth-child(2) .data strong').text.gsub(/[\n\r\s]{2}/, '').gsub(/.*([0-9]).*[0-9]/, '\1').to_i
   max_number_players = element.css('.moreInfos-list li:nth-child(2) .data strong').text.gsub(/[\n\r\s]{2}/, '').gsub(/.*[0-9].*([0-9])/, '\1').to_i
-  games = Game.new(name: name, description: description, average_duration: average_duration, category: category, price: price, age_range: age_range, min_number_players: min_number_players, max_number_players: max_number_players, profile: profile1)
+  games = Game.new(name: name, description: 'trop cool', average_duration: average_duration, category: category, price: price, age_range: age_range, min_number_players: min_number_players, max_number_players: max_number_players, profile: profile1)
   games.save!
 end
 

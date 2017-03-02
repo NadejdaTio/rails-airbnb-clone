@@ -3,9 +3,11 @@ Rails.application.routes.draw do
   mount Attachinary::Engine => "/attachinary"
 
   get 'pages/home'
-  resources :games, only: [:edit, :show, :index, :destroy, :new, :create, :update]
+  resources :games, only: [:edit, :show, :index, :destroy, :update]
+  resources :profiles, only: [:edit, :show, :index, :destroy, :new, :create, :update] do
+    resources :games, only: [:new, :create]
+  end
   resources :orders, only: [:edit, :show, :index, :destroy, :new, :create, :update]
-  resources :profiles
 
   devise_for :users,
     controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
