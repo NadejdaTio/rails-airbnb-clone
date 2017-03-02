@@ -1,7 +1,9 @@
 <div class="container">
 <%= simple_form_for @game do |f| %>
   <%= f.input :name %>
-  <%= f.input :description %>
+  <% if @game.description %>
+    <%= f.input :description %>
+  <% end %>
   <%= f.input :category %>
   <%= f.input :average_duration %>
   <%= f.input :min_number_players %>
