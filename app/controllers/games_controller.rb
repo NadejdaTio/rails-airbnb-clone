@@ -4,20 +4,24 @@ class GamesController < ApplicationController
 
   def index
     search_params
-    #if current_user
-    owners_arr = Profile.near(params[:address], 10)
-    #@owner = owners_arr.first #Profile.find_by(user: current_user)
 
-    @games = Game.all.select do |game|
-      owners_arr.include?(game.profile) && game.category == params[:category]
+    if params[:address].nil?
+      owners_arr = Profile.all
+    else
+      owners_arr = Profile.near(params[:address], 10)
     end
 
-    @games_profile = @games.map do |game|
-      game.profile
+    if params[:category].nil?
+      @games = Game.all.select {|game| owners_arr.include?(game.profile) }
+    else
+      @games = Game.all.select do |game|
+        owners_arr.include?(game.profile) && game.category == params[:category]
+      end
     end
+
+    @games_profile = @games.map {|game| game.profile }
 
     if !@games.empty?
-      #@owner_coordinates = { lat: @owner.latitude, lng: @owner.longitude }
       @owners = Profile.all.select do |profile|
         profile.latitude != nil && profile.longitude != nil && profile.user != current_user && @games_profile.include?(profile)
       end
@@ -28,11 +32,6 @@ class GamesController < ApplicationController
         marker.infowindow render_to_string(partial: "/profiles/map_box", locals: { profile: profile })
       end
     end
-
-    # else
-    #   redirect_to new_user_session_path
-    # end
-
 
   end
 
