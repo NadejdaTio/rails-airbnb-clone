@@ -3,11 +3,13 @@
     <div class="title">
       <h1>Ajoutez un jeu en location</h1>
     </div>
+    <%= image_tag("http://res.cloudinary.com/kingofocean/image/upload/v1488289197/avatar-medium_ldp59x.jpg", class:"avatar-xlarge") %>
     <div class="col-xs-12 col-lg-offset-4 col-lg-6">
       <%= simple_form_for [@profile, @game] do |f| %>
         <%= f.input :name, label: 'Nom du jeu' %>
+        <%= f.input :photo, as: :attachinary %>
         <%= f.input :description, as: :string %>
-        <%= f.input :category %>
+        <%= f.input :category, label: 'Catégorie' %>
         <%= f.input :age_range, label: 'âge' %>
         <%= f.input :average_duration, label: 'Durée moyenne d\'une partie (en minutes)' %>
         <%= f.input :min_number_players, label: 'Nombre de joueurs minimum' %>
@@ -18,3 +20,4 @@
     </div>
   </div>
 </div>
+
