@@ -82,7 +82,7 @@ private
   end
 
   def search_params
-    params.permit(:address, :start_date, :category)
+    params.permit(:address, :start_date, :category, :photo)
   end
 
 end
