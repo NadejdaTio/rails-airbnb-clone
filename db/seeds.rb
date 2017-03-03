@@ -34,6 +34,7 @@ PROFILE10 = Profile.create!(first_name: 'Marion', last_name: 'Lavoiture', addres
 
 def parse_fnac(game_type)
   url = "http://www.fnac.com/n142414/Jeux-de-societe/#{game_type}?ItemPerPage=20&SDM=list"
+  puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> #{game_type} :::: #{url}"
   doc = Nokogiri::HTML(open(url), nil, 'utf-8')
   doc.search('.Article-item').each do |element|
     name = element.css('.Article-infoContent .Article-desc a').text
