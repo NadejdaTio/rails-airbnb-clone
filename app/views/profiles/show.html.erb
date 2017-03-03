@@ -25,6 +25,39 @@
                   :data => {:confirm => 'Are you sure?'} %>
     </div>
   </div>
+  <div class='row text-center margin'>
+  <h3>Les commandes en cours</h3>
+  <div class='orders-profile'>
+    <% @orders.reverse.each do |order| %>
+      <% if order.end_date < 3.days.from_now %>
+        <div class="col-xs-12 col-sm-4" style="display: none;">
+              <p>Date de la commande <%= order.start_date %> - <%= order.end_date %></p>
+              <p>Status de la commande <%= order.status %></p>
+        </div>
+        <% elsif order.status == "accepté" %>
+        <div class="col-xs-12 col-sm-4 accepted">
+          <div class='order-content'>
+            <p>Date de la commande <%= order.start_date %> - <%= order.end_date %></p>
+            <p>Status de la commande "<%= order.status %>"</p>
+          </div>
+        </div>
+        <% elsif order.status == "Demande envoyée"%>
+        <div class="col-xs-12 col-sm-4 sending">
+          <div class='order-content'>
+            <p>Date de la commande <%= order.start_date %> - <%= order.end_date %></p>
+            <p>Status de la commande "<%= order.status %>"</p>
+          </div>
+        </div>
+        <% else %>
+        <div class="col-xs-12 col-sm-4 other">
+          <div class='order-content'>
+            <p>Date de la commande <%= order.start_date %> - <%= order.end_date %></p>
+            <p>Status de la commande "<%= order.status %>"</p>
+          </div>
+        </div>
+      <%end%>
+    <% end %>
+  </div>
 </div>
 <hr>
 <!-- Mes jeux -->
