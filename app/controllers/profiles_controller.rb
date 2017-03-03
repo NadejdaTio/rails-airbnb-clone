@@ -18,6 +18,7 @@ class ProfilesController < ApplicationController
   end
 
   def show
+    @orders = Order.where(profile_id: @profile.id)
   end
 
   def new

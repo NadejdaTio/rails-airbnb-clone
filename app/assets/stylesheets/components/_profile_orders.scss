@@ -1,0 +1,38 @@
+.margin {
+  padding-left: 20px !important;
+}
+
+.orders-profile {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  border-top: solid;
+  border-top-width: thin;
+}
+
+.accepted {
+  height: 80px;
+  background-color: #9ffcb6;
+  margin: 25px;
+  border-radius: 20px;
+}
+
+.sending {
+  height: 80px;
+  background-color: #e0e0e0;
+  margin: 50px;
+  border-radius: 20px;
+}
+
+.other {
+  height: 80px;
+  background-color: pink;
+  margin: 50px;
+  border-radius: 20px;
+}
+
+.order-content {
+  padding-top: 15px;
+  p {
+    font-size: 15px;
+  }
+}
