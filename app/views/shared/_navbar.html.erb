@@ -1,15 +1,17 @@
 <div class="navbar-wagon navbar-fixed-top opaque-navbar">
   <!-- Logo -->
   <%= link_to root_path, class: "navbar-wagon-brand" do %>
-    <%= image_tag "logo.png" %>
+    <%= cl_image_tag("15614807111_790a1d006b_q_djnztc",
+      width: 50, height: 50, crop: :fill) %>
   <% end %>
+
 
   <!-- Right Navigation -->
   <div class="navbar-wagon-right hidden-xs hidden-sm scrolled">
 
     <!-- Search form -->
 
-    <!-- Different navigation if login or not -->
+    <!-- Different navigation if 15614807111_790a1d006b_q_djnztclogin or not -->
     <% if user_signed_in? %>
 
       <!-- Notification -->
