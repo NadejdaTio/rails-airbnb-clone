@@ -54,8 +54,9 @@ end
 parse_fnac("Jeux-d-ambiance")
 parse_fnac("Jeux-de-strategie")
 parse_fnac("Jeux-de-culture-generale")
-parse_fnac("Jeux-de-pions")
+parse_fnac("Jeux-de-role")
 parse_fnac("Jeux-d-adresse")
+parse_fnac("Jeux-de-pions")
 
 Game.all.each do |game|
   availabilities = Availability.create!(start_date: '2017-03-14', end_date: '2017-11-01', game: game)
