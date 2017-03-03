@@ -1,21 +1,17 @@
 <div class="navbar-wagon navbar-fixed-top opaque-navbar">
   <!-- Logo -->
   <%= link_to root_path, class: "navbar-wagon-brand" do %>
-    <%= image_tag "logo.png" %>
+    <%= cl_image_tag("imageedit_4_9375620562_stkueo",
+      width: 50, height: 50, crop: :fill, alt: "home") %>
   <% end %>
+
 
   <!-- Right Navigation -->
   <div class="navbar-wagon-right hidden-xs hidden-sm scrolled">
 
     <!-- Search form -->
-    <form action="" class="navbar-wagon-search">
-      <input type="text" class="navbar-wagon-search-input" placeholder="Search something">
-      <button type="submit" class="navbar-wagon-search-btn">
-        <i class="fa fa-search"></i>
-      </button>
-    </form>
 
-    <!-- Different navigation if login or not -->
+    <!-- Different navigation if 15614807111_790a1d006b_q_djnztclogin or not -->
     <% if user_signed_in? %>
 
       <!-- Notification -->
@@ -29,9 +25,11 @@
       <!-- Profile picture and dropdown -->
       <div class="navbar-wagon-item">
         <div class="dropdown">
+          <% number = current_user.id %>
+          <% profile_pic = Profile.where(user_id: number) %>
           <% avatar_url = current_user.facebook_picture_url %>
-          <% if @profile.present? && @profile.photo.present? %>
-            <%= cl_image_tag @profile.photo.path, class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+          <% if profile_pic != [] %>
+            <%= cl_image_tag profile_pic[0].photo.path, class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
           <% elsif avatar_url %>
             <%= image_tag avatar_url, class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
           <% else %>

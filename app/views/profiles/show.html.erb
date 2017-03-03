@@ -5,13 +5,25 @@
     </div>
     <div class="col-xs-12 col-sm-4">
       <div class="text-center">
-        <% avatar_url = current_user.facebook_picture_url %>
-        <% if @profile.photo %>
-          <%= cl_image_tag @profile.photo.path, class:"avatar-xlarge" %>
-        <% elsif avatar_url %>
-          <%= image_tag avatar_url, class:"avatar-xlarge" %>
+        <% if current_user.id == @profile.user_id %>
+          <% avatar_url = current_user.facebook_picture_url %>
+          <% if @profile.photo %>
+            <%= cl_image_tag @profile.photo.path, class:"avatar-xlarge" %>
+          <% elsif avatar_url %>
+            <%= image_tag avatar_url, class:"avatar-xlarge" %>
+          <% else %>
+            <%= image_tag("http://res.cloudinary.com/kingofocean/image/upload/v1488289197/avatar-medium_ldp59x.jpg", class:"avatar-xlarge") %>
+          <% end %>
         <% else %>
-          <%= image_tag("http://res.cloudinary.com/kingofocean/image/upload/v1488289197/avatar-medium_ldp59x.jpg", class:"avatar-xlarge") %>
+          <% number = @profile.user_id %>
+          <% temp_user = User.where(id: number) %>
+          <% if @profile.photo %>
+            <%= cl_image_tag @profile.photo.path, class:"avatar-xlarge" %>
+          <%elsif temp_user[0].facebook_picture_url != nil %>
+            <%= image_tag temp_user[0].facebook_picture_url, class:'avatar-xlarge' %>
+          <% else %>
+            <%= image_tag("http://res.cloudinary.com/kingofocean/image/upload/v1488289197/avatar-medium_ldp59x.jpg", class:"avatar-xlarge") %>
+          <% end %>
         <% end %>
       </div>
       <div>
@@ -20,9 +32,11 @@
       <p><strong>Ville</strong>: <%= @profile.address %></p>
       <p><strong>Ville</strong>: <%= @profile.phone_number %></p>
       </div>
-      <%= link_to "Editer mes infos", edit_profile_path(@profile), class:"btn btn-primary" %>
-      <%= link_to "Supprimer mon compte", user_registration_path, :method => :delete, class:"btn btn-danger",
-                  :data => {:confirm => 'Are you sure?'} %>
+        <% if current_user.id == @profile.id %>
+          <%= link_to "Editer mes infos", edit_profile_path(@profile), class:"btn btn-primary" %>
+          <%= link_to "Supprimer mon compte", user_registration_path, :method => :delete, class:"btn btn-danger",
+                      :data => {:confirm => 'Are you sure?'} %>
+        <% end %>
     </div>
   </div>
   <div class='row text-center margin'>
