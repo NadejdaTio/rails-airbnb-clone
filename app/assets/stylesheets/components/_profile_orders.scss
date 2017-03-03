@@ -10,22 +10,22 @@
 }
 
 .accepted {
-  height: 80px;
+  height: auto;
   background-color: #9ffcb6;
   margin: 25px;
   border-radius: 20px;
 }
 
 .sending {
-  height: 80px;
+  height: auto;
   background-color: #e0e0e0;
   margin: 50px;
   border-radius: 20px;
 }
 
 .other {
-  height: 80px;
-  background-color: pink;
+  height: auto;
+  background-color: $middle-blue;
   margin: 50px;
   border-radius: 20px;
 }
