@@ -7,7 +7,10 @@
         </div>
         <% @games.each do |game| %>
           <div class="product">
-            <img src="kudoz.jpg" alt="kudoz" class="product-image hidden-xs">
+<!--             <img class="product-image hidden-xs">
+ -->            <% if game.photo? %>
+              <%= cl_image_tag game.photo.path, class: "product-image hidden-xs" %>
+            <% end %>
             <div class='product-body'>
               <h3><%= game.name %></h3>
               <p><%= game.price %> €</p>
