@@ -1,10 +1,12 @@
 <div class="container">
   <div class="row">
-    <div class="title">
+    <div class="title text-center">
       <h1>Ajoutez un jeu en location</h1>
     </div>
-    <%= image_tag("http://res.cloudinary.com/kingofocean/image/upload/v1488289197/avatar-medium_ldp59x.jpg", class:"avatar-xlarge") %>
-    <div class="col-xs-12 col-lg-offset-4 col-lg-6">
+    <div class="text-center">
+      <%= image_tag("http://res.cloudinary.com/kingofocean/image/upload/v1488289197/avatar-medium_ldp59x.jpg", class:"avatar-xlarge") %>
+    </div>
+    <div class="col-xs-12 col-lg-offset-3 col-lg-6 text-center">
       <%= simple_form_for [@profile, @game] do |f| %>
         <%= f.input :name, label: 'Nom du jeu' %>
         <%= f.input :photo, as: :attachinary %>

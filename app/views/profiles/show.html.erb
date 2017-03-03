@@ -23,21 +23,13 @@
           <% end %>
         <% end %>
       </div>
-<<<<<<< HEAD
-      <div>
-        <p><strong>Nom</strong>: <%= @profile.last_name %></p>
-        <p><strong>Prénom</strong>: <%= @profile.first_name %></p>
-        <p><strong>Ville</strong>: <%= @profile.address %></p>
-        <p><strong>Ville</strong>: <%= @profile.phone_number %></p>
-=======
     </div>
     <div class="col-xs-12 col-sm-4">
       <div id="profile">
-      <p><strong>Nom</strong>: <%= @profile.last_name %></p>
-      <p><strong>Prénom</strong>: <%= @profile.first_name %></p>
-      <p><strong>Ville</strong>: <%= @profile.address %></p>
-      <p><strong>Phone number</strong>: <%= @profile.phone_number %></p>
->>>>>>> master
+        <p><strong>Nom</strong>: <%= @profile.last_name %></p>
+        <p><strong>Prénom</strong>: <%= @profile.first_name %></p>
+        <p><strong>Ville</strong>: <%= @profile.address %></p>
+        <p><strong>Phone number</strong>: <%= @profile.phone_number %></p>
       </div>
         <% if current_user.id == @profile.user_id %>
           <%= link_to "Editer mes infos", edit_profile_path(@profile), class:"btn btn-primary" %>
