@@ -20,7 +20,7 @@
               <p>Age range: <%= game.age_range %></p>
               <p>Average duration: <%= game.average_duration %> min</p>
               <br/>
-              <%= link_to "Show details", game_path(game) %> | <%= link_to "Book", new_order_path %>
+              <%= link_to "Show details", game_path(game) %> | <%= link_to "Book", game_path %>
             </div>
           </div>
         <% end %>

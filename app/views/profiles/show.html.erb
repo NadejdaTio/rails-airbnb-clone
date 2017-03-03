@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-xs-12 col-sm-4 no-margin">
+    <div class="col-xs-12 col-sm-4">
       <div class="text-center">
         <% if current_user.id == @profile.user_id %>
           <% avatar_url = current_user.facebook_picture_url %>
@@ -23,15 +23,23 @@
           <% end %>
         <% end %>
       </div>
+<<<<<<< HEAD
+      <div>
+        <p><strong>Nom</strong>: <%= @profile.last_name %></p>
+        <p><strong>Prénom</strong>: <%= @profile.first_name %></p>
+        <p><strong>Ville</strong>: <%= @profile.address %></p>
+        <p><strong>Ville</strong>: <%= @profile.phone_number %></p>
+=======
     </div>
     <div class="col-xs-12 col-sm-4">
-      <div>
+      <div id="profile">
       <p><strong>Nom</strong>: <%= @profile.last_name %></p>
       <p><strong>Prénom</strong>: <%= @profile.first_name %></p>
       <p><strong>Ville</strong>: <%= @profile.address %></p>
-      <p><strong>Ville</strong>: <%= @profile.phone_number %></p>
+      <p><strong>Phone number</strong>: <%= @profile.phone_number %></p>
+>>>>>>> master
       </div>
-        <% if current_user.id == @profile.id %>
+        <% if current_user.id == @profile.user_id %>
           <%= link_to "Editer mes infos", edit_profile_path(@profile), class:"btn btn-primary" %>
           <%= link_to "Supprimer mon compte", user_registration_path, :method => :delete, class:"btn btn-danger",
                       :data => {:confirm => 'Are you sure?'} %>
@@ -42,28 +50,67 @@
 <hr>
 <!-- Mes jeux -->
 <div class="tabs">
-    <a class="tab" href="#" data-target="#my-orders">
-      <p>Mes commandes</p>
-    </a>
-    <a class="tab active" href="#" data-target="#player">
-      <p>Commentaire sur mes locations</p>
-    </a>
-    <a class="tab" href="#" data-target="#owner">
-      <p>Commentaire sur mes jeux</p>
-    </a>
-    <a class="tab" href="#" data-target="#my-games">
-      <p>Mes jeux</p>
-    </a>
+  <a class="tab" href="#" data-target="#my-orders">
+    <p>Mes commandes</p>
+  </a>
+  <a class="tab active" href="#" data-target="#player">
+    <p>Commentaire sur mes locations</p>
+  </a>
+  <a class="tab" href="#" data-target="#owner">
+    <p>Commentaire sur mes jeux</p>
+  </a>
+  <a class="tab" href="#" data-target="#my-games">
+    <p>Mes jeux</p>
+  </a>
+</div>
+
+  <div class="tab-content" id="my-orders">
+    <div class='row text-center margin'>
+      <div class='orders-profile'>
+        <% @orders.reverse.each do |order| %>
+          <% if order.end_date < 3.days.from_now %>
+            <div class="col-xs-12 col-sm-4 col-lg-3" style="display: none;">
+              <p>Date de la commande <%= order.start_date %> - <%= order.end_date %></p>
+              <p>Status de la commande <%= order.status %></p>
+            </div>
+          <% elsif order.status == "accepté" %>
+            <div class="col-xs-12 col-sm-4 col-lg-3 accepted">
+              <div class='order-content'>
+                <p>Date de la commande <%= order.start_date %> - <%= order.end_date %></p>
+                <p>Status de la commande "<%= order.status %>"</p>
+              </div>
+            </div>
+          <% elsif order.status == "Demande envoyée"%>
+            <div class="col-xs-12 col-sm-4 col-lg-3 sending">
+              <div class='order-content'>
+                <p>Date de la commande <%= order.start_date %> - <%= order.end_date %></p>
+                <p>Status de la commande "<%= order.status %>"</p>
+              </div>
+            </div>
+          <% else %>
+            <div class="col-xs-12 col-sm-4 col-lg-3 other">
+              <div class='order-content'>
+                <p>Date de la commande <%= order.start_date %> - <%= order.end_date %></p>
+                <p>Status de la commande "<%= order.status %>"</p>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
   </div>
 
-  <div class="tab-content" id="player">
-    <div class="container" >
+  <div class="tab-content hidden" id="player">
+    <div class="container">
       <% PlayerReview.all.each do |review| %>
-        <div>
-          <p><%= review.rating %></p>
-          <p><%= review.comment %></p>
-          <p><%= review.state %></p>
-        </div>
+        <ul class="list-inline">
+          <li><ul class="list-inline">
+            <% review.rating.times do %>
+              <li><a href=""><i class="fa fa-star"></i></a></li>
+            <% end %>
+          </ul></li>
+          <li><p><%= review.comment %></p></li>
+        </ul>
       <% end %>
     </div>
   </div>
@@ -71,11 +118,14 @@
   <div class="tab-content hidden" id="owner">
     <div class="container">
       <% OwnerReview.all.each do |review| %>
-        <div>
-          <p><%= review.rating %></p>
-          <p><%= review.comment %></p>
-          <p><%= review.state %></p>
-        </div>
+        <ul class="list-inline">
+          <li><ul class="list-inline">
+            <% review.rating.times do %>
+              <li><a href=""><i class="fa fa-star"></i></a></li>
+            <% end %>
+          </ul></li>
+          <li><p><%= review.comment %></p></li>
+        </ul>
       <% end %>
     </div>
   </div>
@@ -83,52 +133,31 @@
   <div class="tab-content hidden" id="my-games">
     <div class="container">
       <ul>
-        <h1>Mes jeux</h1>
+
         <% @profile.games.each do |game| %>
-          <li><%= game.name %></li>
-          <li><%= game.price %></li>
-          <li><%= game.category %></li>
-          <li><%= game.age_range %></li>
+          <div class="product">
+            <img src="kudoz.jpg" alt="kudoz" class="product-image hidden-xs">
+            <div class='product-body'>
+              <h3><%= game.name %></h3>
+              <p><%= game.price %> €</p>
+              <p><%= game.category %></p>
+              <% if game.min_number_players == game.max_number_players %>
+                <p><%= game.max_number_players %> players</p>
+              <% else %>
+                <p>From <%= game.min_number_players %> to <%= game.max_number_players %> players</p>
+              <% end %>
+              <p>Age range: <%= game.age_range %></p>
+              <p>Average duration: <%= game.average_duration %> min</p>
+              <br/>
+              <%= link_to "Show details", game_path(game) %>
+            </div>
+          </div>
         <% end %>
       </ul>
     </div>
   </div>
 
-<div class="tab-content hidden" id="my-orders">
-  <div class='row text-center margin'>
-  <div class='orders-profile'>
-    <% @orders.reverse.each do |order| %>
-      <% if order.end_date < 3.days.from_now %>
-        <div class="col-xs-12 col-sm-4 col-lg-3" style="display: none;">
-              <p>Date de la commande <%= order.start_date %> - <%= order.end_date %></p>
-              <p>Status de la commande <%= order.status %></p>
-        </div>
-        <% elsif order.status == "accepté" %>
-        <div class="col-xs-12 col-sm-4 col-lg-3 accepted">
-          <div class='order-content'>
-            <p>Date de la commande <%= order.start_date %> - <%= order.end_date %></p>
-            <p>Status de la commande "<%= order.status %>"</p>
-          </div>
-        </div>
-        <% elsif order.status == "Demande envoyée"%>
-        <div class="col-xs-12 col-sm-4 col-lg-3 sending">
-          <div class='order-content'>
-            <p>Date de la commande <%= order.start_date %> - <%= order.end_date %></p>
-            <p>Status de la commande "<%= order.status %>"</p>
-          </div>
-        </div>
-        <% else %>
-        <div class="col-xs-12 col-sm-4 col-lg-3 other">
-          <div class='order-content'>
-            <p>Date de la commande <%= order.start_date %> - <%= order.end_date %></p>
-            <p>Status de la commande "<%= order.status %>"</p>
-          </div>
-        </div>
-      <%end%>
-    <% end %>
-  </div>
-  </div>
-</div>
+
 
 <% content_for(:after_js) do %>
   <%= javascript_tag do %>
