@@ -29,7 +29,7 @@ class GamesController < ApplicationController
         @hash = Gmaps4rails.build_markers(@owners) do |profile, marker|
           marker.lat profile.latitude
           marker.lng profile.longitude
-          marker.infowindow render_to_string(partial: "/profiles/map_box", locals: { profile: profile })
+          #marker.infowindow render_to_string(partial: "/profiles/map_box", locals: { profile: profile })
         end
       end
   end
