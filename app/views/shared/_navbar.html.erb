@@ -29,9 +29,11 @@
       <!-- Profile picture and dropdown -->
       <div class="navbar-wagon-item">
         <div class="dropdown">
+          <% number = current_user.id %>
+          <% profile_pic = Profile.where(user_id: number) %>
           <% avatar_url = current_user.facebook_picture_url %>
-          <% if @profile.present? && @profile.photo.present? %>
-            <%= cl_image_tag @profile.photo.path, class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+          <% if profile_pic[0].photo != nil %>
+            <%= cl_image_tag profile_pic[0].photo.path, class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
           <% elsif avatar_url %>
             <%= image_tag avatar_url, class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
           <% else %>
