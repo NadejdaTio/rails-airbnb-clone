@@ -9,7 +9,7 @@
         <input type="text" class="form-control input-lg" placeholder="où" name="address">
         <input type="date" class="form-control input-lg" placeholder="quand" name="start_date">
         <select class="form-control input-lg" placeholder="catégorie" name='category'>
-          <% games_array = Game.all.map { |game| [game.category]} %>
+          <% games_array = Game.all.map { |game| [game.category] }.uniq %>
           <option value="" disabled selected>catégorie</option>
           <%= options_for_select(games_array) %>
         </select>
