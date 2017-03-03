@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-xs-12 col-sm-4 no-margin">
+    <div class="col-xs-12 col-sm-4">
       <div class="text-center">
         <% if current_user.id == @profile.user_id %>
           <% avatar_url = current_user.facebook_picture_url %>
@@ -25,11 +25,11 @@
       </div>
     </div>
     <div class="col-xs-12 col-sm-4">
-      <div>
+      <div id="profile">
       <p><strong>Nom</strong>: <%= @profile.last_name %></p>
       <p><strong>Prénom</strong>: <%= @profile.first_name %></p>
       <p><strong>Ville</strong>: <%= @profile.address %></p>
-      <p><strong>Ville</strong>: <%= @profile.phone_number %></p>
+      <p><strong>Phone number</strong>: <%= @profile.phone_number %></p>
       </div>
         <% if current_user.id == @profile.id %>
           <%= link_to "Editer mes infos", edit_profile_path(@profile), class:"btn btn-primary" %>
@@ -60,7 +60,7 @@
     <div class="container" >
       <% PlayerReview.all.each do |review| %>
         <div>
-          <p><%= review.rating %></p>
+          <p><%= review.rating.times do %></p>
           <p><%= review.comment %></p>
           <p><%= review.state %></p>
         </div>
