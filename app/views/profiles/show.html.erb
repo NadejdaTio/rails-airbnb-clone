@@ -27,12 +27,12 @@
         <% end %>
       </div>
       <div>
-      <p><strong>Nom</strong>: <%= @profile.last_name %></p>
-      <p><strong>Prénom</strong>: <%= @profile.first_name %></p>
-      <p><strong>Ville</strong>: <%= @profile.address %></p>
-      <p><strong>Ville</strong>: <%= @profile.phone_number %></p>
+        <p><strong>Nom</strong>: <%= @profile.last_name %></p>
+        <p><strong>Prénom</strong>: <%= @profile.first_name %></p>
+        <p><strong>Ville</strong>: <%= @profile.address %></p>
+        <p><strong>Ville</strong>: <%= @profile.phone_number %></p>
       </div>
-        <% if current_user.id == @profile.id %>
+        <% if current_user.id == @profile.user_id %>
           <%= link_to "Editer mes infos", edit_profile_path(@profile), class:"btn btn-primary" %>
           <%= link_to "Supprimer mon compte", user_registration_path, :method => :delete, class:"btn btn-danger",
                       :data => {:confirm => 'Are you sure?'} %>
