@@ -25,7 +25,7 @@ class OrdersController < ApplicationController
       @order.total_price = days * price
       @order.status = ""
 
-      @profile = Profile.all.select { |profile| profile.id == @current_user.id }.first
+      @profile = Profile.all.select { |profile| profile.user_id == @current_user.id }.first
       @order.profile = @profile
       #Vérifications des dates des autres orders
       arr_dates_of_location = []
@@ -45,7 +45,7 @@ class OrdersController < ApplicationController
         else
           @order.status = "Demande envoyée"
           @order.save!
-          redirect_to profile_path(current_user.id)
+          redirect_to profile_path(@profile)
         end
     #Si l'utilisateur n'est pas connecté
     else
